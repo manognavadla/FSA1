@@ -1,4 +1,4 @@
-package day2;
+package Day2;
 /*
 CP_U1_SP2_Distinct_Numbers_in_Each _Subarray
  * There are N small cartoons, and each cartoon contains a balloon of a specific color, represented by an integer.

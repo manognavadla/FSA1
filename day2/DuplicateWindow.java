@@ -1,3 +1,4 @@
+package Day2;
 /*
 CP_U1_AP2_DuplicateWindow
  * Given an integer array of nums and an integer window size X, 
