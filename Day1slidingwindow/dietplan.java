@@ -1,4 +1,4 @@
-package Day1;
+package Day1slidingwindow;
 /*
 CP_U1_SP1_Diet_Plan_Performance
  * A dieter records the number of calories they consume each day in an array calories, 
@@ -92,7 +92,31 @@ Constraints:
 3) 0 <= lower <= upper
 
  */
-
-public class dietplan {
+import java.util.*;
+public class dietplan { public static int point(int n, int[] arr, int k, int low, int high){
+    int t=0;
+    int sum=0;
+    for(int i=0;i<k;i++) sum+=arr[i];
+    if(sum<low) t--;
+    if(sum>high) t++;
+    for(int j=k;j<n;j++){
+        sum+=arr[j]-arr[j-k];
+      
+            if(sum<low) t--;
+            else if(sum>high) t++;
+         
+    }
+    return t;
+}
+public static void main(String[] args){
+    Scanner sc= new Scanner(System.in);
+    int n= sc.nextInt();
+    int [] arr= new int[n];
+    for(int i=0;i<n;i++) arr[i]=sc.nextInt();
+    int k=sc.nextInt();
+    int low=sc.nextInt();
+    int high=sc.nextInt();
+    System.out.print(point(n,arr,k,low,high));
     
+}
 }

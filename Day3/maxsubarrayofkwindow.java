@@ -34,7 +34,33 @@ Maximum of subarray {4, 5, 2} is 5
 Maximum of subarray {5, 2, 3} is 5
 Maximum of subarray {2, 3, 6} is 6
 */
- 
+import java.util.*;
+
 public class maxsubarrayofkwindow {
-    
+    public static List<Integer> small(int n, int[] arr, int win){
+        TreeMap<Integer,Integer> tm= new TreeMap<>();
+        List<Integer> res= new ArrayList<>();
+        for(int i=0;i<win;i++){
+            tm.put(arr[i], tm.getOrDefault(arr[i],0)+1);
+        }
+        res.add(tm.lastKey());
+        for(int j=win;j<n;j++){
+            tm.put(arr[j-win], tm.get(arr[j-win])-1);
+            if(tm.get(arr[j-win])==0){
+            tm.remove(arr[j-win]);
+            }
+            tm.put(arr[j],tm.getOrDefault(arr[j],0)+1);
+            res.add(tm.lastKey());
+        }
+        return res;
+    }
+    public static void main(String args[]){
+        Scanner sc= new Scanner(System.in);
+        int n=sc.nextInt();
+        int win=sc.nextInt();
+        int[] arr= new int[n];
+        for(int i=0;i<n;i++) arr[i]=sc.nextInt();
+        
+        System.out.println(small(n,arr,win));
+    }
 }

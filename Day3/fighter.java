@@ -18,7 +18,7 @@ Note that the total points can be negative.
 
  
 Input Format
---------------
+-------------- 
 Line-1: An integer N, the arrray length.
 Line-2: Array of integers, power[]
 Line-3: Three integers -subarray length K, lower value and upper value

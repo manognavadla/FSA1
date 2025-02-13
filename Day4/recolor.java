@@ -62,7 +62,7 @@ Constraints:
 -> n == blocks.length
 -> 1 <= n <= 100
 -> blocks[i] is either 'W' or 'B'.
--> 1 <= k <= n
+-> 1 <= k <= n 
  */
 public class recolor {
     

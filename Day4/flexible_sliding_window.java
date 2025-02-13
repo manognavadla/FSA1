@@ -53,6 +53,29 @@ The longest valid subarray has a length of 3.
 
 
  */
+import java.util.*;
 public class flexible_sliding_window {
-    
+    public static int books(int n, int[] b, int k){
+        int m=Integer.MIN_VALUE;
+        int left=0,right=0,sum=0;
+        while(right<n){
+            sum+=b[right];
+            if(sum<=k){
+                m=Math.max(m, right-left+1);
+            }else{
+                sum-=b[left];
+                left++;
+            }
+            right++;
+        }
+        return m;
+    }
+    public static void main(String[] args){
+        Scanner sc= new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] b= new int[n];
+        for(int i=0;i<n;i++)b[i]=sc.nextInt();
+        int k= sc.nextInt();
+        System.out.println(books(n,b,k));
+    }
 }

@@ -35,4 +35,35 @@ Sample Input-2:
 Sample Output-2: 
 ----------------
 true
- */
+ */ 
+import java.util.*;
+
+ public class DuplicateWindow{
+    public static boolean duplicate(int n, int[] arr, int k){
+        // boolean b=false;
+        HashMap<Integer,Integer> hmap= new HashMap<>();
+        for(int i=0;i<k;i++){
+            hmap.put(arr[i], hmap.getOrDefault(arr[i], 0)+1);
+            if(hmap.get(arr[i])>1) return true;
+        }
+        for(int j=k;j<n;j++){
+            hmap.put(arr[j-k],hmap.get(arr[j-k])-1);
+            if(hmap.get(arr[j-k])==0){
+                hmap.remove(arr[j-k]);
+            }
+            hmap.put(arr[j], hmap.getOrDefault(arr[j], 0)+1);
+            if(hmap.get(arr[j])>1){
+                return true;
+            }
+        }
+        return false;
+    }
+    public static void main(String[] args) {
+        Scanner sc= new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr= new int[n];
+        for(int i=0;i<n;i++) arr[i]=sc.nextInt();
+        int w=sc.nextInt();
+        System.out.println(duplicate(n,arr,w));
+    }
+ }

@@ -1,4 +1,9 @@
 package Day4;
+
+import java.util.HashMap;
+import java.util.Map;
+import java.util.Scanner;
+
 /*
  * You are visiting a farm that has a single row of fruit trees arranged from left to right.
 
@@ -51,5 +56,29 @@ Explanation: We can pick from trees [2,3,2,2].
 If we had started at the first tree, we would only pick from trees [1,2].
  */
 public class fruits {
+    public static int num(int[] fruit,int n){
+        int m=Integer.MIN_VALUE;
+        Map<Integer,Integer> hmap= new HashMap<>();
+        int left=0;
+        for(int right=0;right<n;right++){
+            hmap.put(fruit[right],hmap.getOrDefault(fruit[right],0)+1);
+          
+           if(hmap.size()>2){
+               hmap.put(fruit[left], hmap.get(fruit[left])-1);
+               if(hmap.get(fruit[left])==0)
+                hmap.remove(fruit[left]);
+                left++;
+            }
+            m=Math.max(m,right-left+1);
+        }
+        return m;
+    }
+    public static void main(String []args){
+        Scanner sc= new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] fruit= new int[n];
+        for(int i=0;i<n;i++) fruit[i]=sc.nextInt();
+        System.out.println(num(fruit,n));
+    }
     
 }

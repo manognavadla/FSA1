@@ -1,4 +1,8 @@
 package Day4;
+
+import java.util.Arrays;
+import java.util.Scanner;
+
 /*
  * You are given an array people, where each element people[i] represents the weight of the i-th person. 
 You also have an unlimited number of boats, but each boat has a maximum weight capacity defined by limit.
@@ -66,5 +70,25 @@ Total boats required: 4.
 
  */
 public class boat {
-    
+     public static int c(int n, int[] p, int k){
+        int count=0,right=p.length-1,left=0;
+        while(left<=right){
+            if(p[left]+p[right]<=k){
+                left++;
+            }
+            right--;
+            count++;
+        }
+        return count;
+        
+    }
+    public static void main(String[] args){
+        Scanner sc= new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] p=new int[n];
+        for(int i=0;i<n;i++) p[i]=sc.nextInt();
+        int k=sc.nextInt();
+        Arrays.sort(p);
+        System.out.println(c(n,p,k));
+    }
 }
