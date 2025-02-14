@@ -15,7 +15,7 @@ For each sequence, they calculate the total calories consumed, denoted as T:
 The dieter starts with zero points. 
 After evaluating all sequences of k days, return the total number of points the dieter has. 
 
-Note that the total points can be negative.
+Note that the total points can be negative. 
 
 Input Format:
 -------------

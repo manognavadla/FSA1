@@ -64,6 +64,34 @@ Constraints:
 -> blocks[i] is either 'W' or 'B'.
 -> 1 <= k <= n 
  */
+import java.util.*;
 public class recolor {
-    
+    public static int black(String s, int n){
+        int minflip= Integer.MAX_VALUE;
+        int wc=0;
+        if(n>s.length()){
+            return 0;
+        }
+        for(int i=0;i<n;i++){
+            if(s.charAt(i)=='W'){
+                wc++;
+            }
+        }
+        minflip=wc;
+        for(int j=n;j<s.length();j++){
+            char c=s.charAt(j-n);
+            if(c=='W') wc--;
+            if(s.charAt(j)=='W') wc++;
+            minflip= Math.min(minflip,wc);
+        }
+        return minflip;
+
+    }
+    public static void main(String[] args) {
+        Scanner sc= new Scanner(System.in);
+        String s= sc.next();
+        int n=sc.nextInt();
+        System.out.println(black(s,n));
+
+    }
 }

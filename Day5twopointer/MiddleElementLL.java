@@ -53,6 +53,7 @@ public class MiddleElementLL {
 		Node fast=head;
 		while(fast.next!=null){
 		    slow=slow.next;
+		    if(fast.next.next==null) break;
 		    fast=fast.next.next;
 		}
 		System.out.print(slow.data);

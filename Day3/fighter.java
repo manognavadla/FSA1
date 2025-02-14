@@ -15,7 +15,7 @@ Initially, the fighter has zero points. Return the total number of points the
 fighter has after consuming power for power.length hours.
 
 Note that the total points can be negative.
-
+ 
  
 Input Format
 -------------- 
@@ -77,6 +77,34 @@ Since k = 1, Since k = 2, we consider subarrays of length 1. and compare it
 to lower and upper. power[0] and power[1] are less than lower so 2 points are lost. 
 power[3] and power[4] are greater than upper so 2 points are gained.
  */
+import java.util.*;
 public class fighter {
+    static int fight(int n, int[] arr, int k, int low, int high){
+            int point=0,sum=0;
+            // Map<Integer,Integer> hmap= new HashMap<>();
+            for(int i=0;i<k;i++){
+                sum+=arr[i];
+            }
+            if(sum<low) point--;
+            if(sum>high) point++;
+            for(int j=k;j<n;j++){
+                sum-=arr[j-k];
+                sum+=arr[j];
+                if(sum>high) point++;
+                if(sum<low) point--;
+            }
+            return point;
+    }
+    public static void main(String[] args) {
+        Scanner sc= new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] arr= new int[n];
+        for(int i=0;i<n;i++) arr[i]= sc.nextInt();
+        int k=sc.nextInt();
+        int low= sc.nextInt();
+        int high=sc.nextInt();
+        System.out.println(fight(n,arr,k,low,high));
+
+    }
     
 }
