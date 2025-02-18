@@ -42,6 +42,47 @@ Sample Output-2:
 ----------------
 0 1 2
  */
+import java.util.*;
+
 public class SortColors {
-    
+    public static void swap(int[] arr, int i, int j) {
+        int temp = arr[j];
+        arr[j] = arr[i];
+        arr[i] = temp;
+    }
+
+    public static void sort(int n, int[] arr) {
+        int i = 0, j = n - 1, mid = 0;
+
+   
+        while (mid <= j) {
+            if (arr[mid] == 0) {
+                swap(arr, mid, i);
+                i++;
+                mid++;
+            } else if (arr[mid] == 2) {  
+                swap(arr, mid, j);
+                j--;
+            } else { 
+                mid++;
+            }
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+
+        sort(n, arr);
+
+        for (int i : arr) {
+            System.out.print(i + " ");
+        }
+        sc.close();
+    }
 }
