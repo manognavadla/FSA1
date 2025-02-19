@@ -62,6 +62,47 @@ Explanation:
 ------------
 The sum 10 + 9 + 8 = 27, which is the closest sum to 30 (minimum absolute difference |30 - 27| = 3).
  */
+import java.util.*;
 public class ClosestTripletSum {
-    
+    public static int[] triplet(int n1, int[] arr1, int n2, int[] arr2, int n3, int[] arr3, int target){
+        int[] res= new int[3];
+        int mindiff=Integer.MAX_VALUE;
+        OUTER:for(int i=0;i<n1;i++){
+            int l=0, r=n3-1;
+            while(l<n2 && r>=0){
+                int sum=arr1[i]+arr2[l]+arr3[r];
+                int diff= Math.abs(target-sum);
+                if(diff<mindiff){
+                    mindiff=diff;
+                    res[0]=arr1[i];
+                    res[1]=arr2[l];
+                    res[2]=arr3[r];
+                }if(sum<target){
+                    l++;
+                }
+                else if(sum>target){
+                    r--;
+                }else if(sum==target){
+                    break OUTER;
+                }
+            }
+        }
+        return res;
+    }
+    public static void main(String[] args) {
+        Scanner sc= new Scanner(System.in);
+        int n1=sc.nextInt();
+        int[] arr1= new int[n1];
+        for(int i=0;i<n1;i++) arr1[i]= sc.nextInt();
+        int n2=sc.nextInt();
+        int[] arr2= new int[n1];
+        for(int i=0;i<n1;i++) arr2[i]= sc.nextInt();
+        int n3=sc.nextInt();
+        int[] arr3= new int[n1];
+        for(int i=0;i<n1;i++) arr3[i]= sc.nextInt();
+        int target=sc.nextInt();
+        int[] res=triplet(n1, arr1, n2, arr2, n3, arr3, target);
+        System.out.println(Arrays.toString(res));
+        // System.out.println(res[0]+","+res[1]+","+res[2]);
+    }
 }

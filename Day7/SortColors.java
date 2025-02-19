@@ -83,6 +83,6 @@ public class SortColors {
         for (int i : arr) {
             System.out.print(i + " ");
         }
-        sc.close();
+     
     }
 }
