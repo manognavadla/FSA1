@@ -46,7 +46,29 @@ Explanation:
 Binary representation of 8 is "1000".
 There is only one 1, so no adjacent pairs exist.
 Output is 0.
+ *
  */
-public class BinaryGap {
-    
+ import java.util.*;
+class BinaryGap{
+    public static int gap(int n){
+        String bs= Integer.toBinaryString(n);
+        int i=0,j=-1;
+        int l=bs.length();
+        int maxdiff=0;
+        while(i<l){
+            if(bs.charAt(i)=='1'){
+                if(j!=-1){
+                    maxdiff=Math.max(maxdiff,i-j);
+                }
+                j=i;
+            }
+            i++;
+        }
+        return maxdiff;
+    }
+    public static void main(String[] args){
+        Scanner sc= new Scanner(System.in);
+        int n=sc.nextInt();
+        System.out.print(gap(n));
+    }
 }

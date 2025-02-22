@@ -63,46 +63,138 @@ Explanation:
 The sum 10 + 9 + 8 = 27, which is the closest sum to 30 (minimum absolute difference |30 - 27| = 3).
  */
 import java.util.*;
+
 public class ClosestTripletSum {
-    public static int[] triplet(int n1, int[] arr1, int n2, int[] arr2, int n3, int[] arr3, int target){
-        int[] res= new int[3];
-        int mindiff=Integer.MAX_VALUE;
-        OUTER:for(int i=0;i<n1;i++){
-            int l=0, r=n3-1;
-            while(l<n2 && r>=0){
-                int sum=arr1[i]+arr2[l]+arr3[r];
-                int diff= Math.abs(target-sum);
-                if(diff<mindiff){
-                    mindiff=diff;
-                    res[0]=arr1[i];
-                    res[1]=arr2[l];
-                    res[2]=arr3[r];
-                }if(sum<target){
-                    l++;
+    
+    public static int[] closestTriplet(int[] arr1, int[] arr2, int[] arr3, int target) {
+        int n1 = arr1.length, n2 = arr2.length, n3 = arr3.length;
+        int closestSum = Integer.MAX_VALUE;
+        int minDiff = Integer.MAX_VALUE;
+        int[] result = new int[3];
+        
+        for (int i = 0; i < n1; i++) {
+            int left = 0, right = n3 - 1;
+            
+            while (left < n2 && right >= 0) {
+                int sum = arr1[i] + arr2[left] + arr3[right];
+                int diff = Math.abs(target - sum);
+                
+                if (diff < minDiff) {
+                    minDiff = diff;
+                    closestSum = sum;
+                    result[0] = arr1[i];
+                    result[1] = arr2[left];
+                    result[2] = arr3[right];
                 }
-                else if(sum>target){
-                    r--;
-                }else if(sum==target){
-                    break OUTER;
-                }
+                
+                if (sum == target) return result;
+                else if (sum < target) left++;
+                else right--;
             }
         }
-        return res;
+        return result;
     }
+    
     public static void main(String[] args) {
-        Scanner sc= new Scanner(System.in);
-        int n1=sc.nextInt();
-        int[] arr1= new int[n1];
-        for(int i=0;i<n1;i++) arr1[i]= sc.nextInt();
-        int n2=sc.nextInt();
-        int[] arr2= new int[n1];
-        for(int i=0;i<n1;i++) arr2[i]= sc.nextInt();
-        int n3=sc.nextInt();
-        int[] arr3= new int[n1];
-        for(int i=0;i<n1;i++) arr3[i]= sc.nextInt();
-        int target=sc.nextInt();
-        int[] res=triplet(n1, arr1, n2, arr2, n3, arr3, target);
-        System.out.println(Arrays.toString(res));
-        // System.out.println(res[0]+","+res[1]+","+res[2]);
+        Scanner sc = new Scanner(System.in);
+        
+        int n1 = sc.nextInt();
+        int[] arr1 = new int[n1];
+        for (int i = 0; i < n1; i++) arr1[i] = sc.nextInt();
+        
+        int n2 = sc.nextInt();
+        int[] arr2 = new int[n2];
+        for (int i = 0; i < n2; i++) arr2[i] = sc.nextInt();
+        
+        int n3 = sc.nextInt();
+        int[] arr3 = new int[n3];
+        for (int i = 0; i < n3; i++) arr3[i] = sc.nextInt();
+        
+        int target = sc.nextInt();
+        sc.close();
+        
+        int[] res = closestTriplet(arr1, arr2, arr3, target);
+        System.out.println(res[0] + " " + res[1] + " " + res[2]);
     }
 }
+/*
+ * 
+ * import java.util.*;
+
+public class ClosestTripletSum {
+    
+    public static int closestTwoSum(int[] arr1, int[] arr2, int target, int[] bestPair) {
+        int left = 0, right = arr2.length - 1;
+        int closestSum = Integer.MAX_VALUE;
+        int minDiff = Integer.MAX_VALUE;
+        
+        while (left < arr1.length && right >= 0) {
+            int sum = arr1[left] + arr2[right];
+            int diff = Math.abs(target - sum);
+            
+            if (diff < minDiff) {
+                minDiff = diff;
+                closestSum = sum;
+                bestPair[0] = arr1[left];
+                bestPair[1] = arr2[right];
+            }
+            
+            if (sum == target) return sum; // Immediate return on exact match
+            else if (sum < target) left++;
+            else right--;
+        }
+        return closestSum;
+    }
+    
+    public static int[] closestTriplet(int[] arr1, int[] arr2, int[] arr3, int target) {
+        Arrays.sort(arr1); // Sorting ensures correctness for two-pointer approach
+        Arrays.sort(arr2);
+        Arrays.sort(arr3);
+        
+        int closestSum = Integer.MAX_VALUE;
+        int minDiff = Integer.MAX_VALUE;
+        int[] result = new int[3];
+        
+        for (int i = 0; i < arr1.length; i++) {
+            int[] bestPair = new int[2];
+            int twoSum = closestTwoSum(arr2, arr3, target - arr1[i], bestPair);
+            int sum = arr1[i] + twoSum;
+            int diff = Math.abs(target - sum);
+            
+            if (diff < minDiff) {
+                minDiff = diff;
+                closestSum = sum;
+                result[0] = arr1[i];
+                result[1] = bestPair[0];
+                result[2] = bestPair[1];
+            }
+            
+            if (sum == target) return result; 
+        }
+        return result;
+    }
+    
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        
+        int n1 = sc.nextInt();
+        int[] arr1 = new int[n1];
+        for (int i = 0; i < n1; i++) arr1[i] = sc.nextInt();
+        
+        int n2 = sc.nextInt();
+        int[] arr2 = new int[n2];
+        for (int i = 0; i < n2; i++) arr2[i] = sc.nextInt();
+        
+        int n3 = sc.nextInt();
+        int[] arr3 = new int[n3];
+        for (int i = 0; i < n3; i++) arr3[i] = sc.nextInt();
+        
+        int target = sc.nextInt();
+        sc.close();
+        
+        int[] res = closestTriplet(arr1, arr2, arr3, target);
+        System.out.println(res[0] + " " + res[1] + " " + res[2]);
+    }
+}
+
+ */

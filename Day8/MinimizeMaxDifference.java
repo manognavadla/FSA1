@@ -52,6 +52,38 @@ Sample Output-2:
 ----------------
 0
  */
-public class MinimizeMaxDifference {
-    
+import java.util.*;
+class MinimizeMaxDifference{
+    public static int[] minmax(int n1, int[] arr1, int n2, int[] arr2, int n3, int[] arr3){
+        int min=Integer.MAX_VALUE;
+        int[] res=new int[3];
+        int i=0,j=0,k=0;
+        while(i<n1 && j<n2 && k<n3){
+            int sum= Math.max(Math.abs(arr1[i]-arr2[j]),Math.max(Math.abs(arr2[j]-arr3[k]),Math.abs(arr3[k]-arr1[i])));
+            if(sum<min){
+                min=sum;
+                res[0]= arr1[i];
+                res[1]=arr2[j];
+                res[2]=arr3[k];
+            }
+            if(arr1[i]<=arr2[j] && arr1[i]<=arr3[k]) i++;
+            else if(arr2[j]<=arr1[i] && arr2[j]<=arr3[k] ) j++;
+            else k++;
+        }
+        return res;
+    }
+    public static void main(String[] args){
+        Scanner sc= new Scanner(System.in);
+        int n1= sc.nextInt();
+        int arr1[]= new int[n1];
+        for(int i=0;i<n1;i++) arr1[i]=sc.nextInt();
+        int n2= sc.nextInt();
+        int arr2[]= new int [n2];
+        for(int i=0;i<n2;i++) arr2[i]=sc.nextInt();
+        int n3=sc.nextInt();
+        int[] arr3= new int[n3];
+        for(int i=0;i<n3;i++) arr3[i]=sc.nextInt();
+        System.out.print(Arrays.toString(minmax(n1,arr1, n2, arr2, n3, arr3)));
+        
+    }
 }
