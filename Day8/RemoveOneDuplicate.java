@@ -55,6 +55,11 @@ Constraints:
 -> All numbers appear exactly once except for one number which appears at least twice.
 
  */
+import java.util.*;
 public class RemoveOneDuplicate {
-    
+    public static void main(String[] args) {
+        System.out.println((1^2^3^4));
+        System.out.println((1^2^3^4^3));
+        System.out.println(((1^2^3^4)^(1^2^3^4^3)));
+    }
 }
