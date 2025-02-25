@@ -57,7 +57,6 @@ Constraints:
 1 <= time[i], totalTrips <= 10^7
 
  */
-import java.util.*;
 public class BinaryTrips {
     
 }

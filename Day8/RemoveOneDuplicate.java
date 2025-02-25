@@ -57,9 +57,22 @@ Constraints:
  */
 import java.util.*;
 public class RemoveOneDuplicate {
+    static int remove(int n, int[] arr){
+        int xa=0;
+        int xn=0;
+        for(int i=0;i<n;i++){
+            if(arr[i]<0 || arr[i]>n) return -1;
+            xa^=arr[i];
+        }
+        for(int i=1;i<=n;i++) xn^=i;
+        
+        return (xa^xn);
+
+    }
     public static void main(String[] args) {
-        System.out.println((1^2^3^4));
-        System.out.println((1^2^3^4^3));
-        System.out.println(((1^2^3^4)^(1^2^3^4^3)));
+      Scanner sc= new Scanner(System.in);
+      int n=sc.nextInt();
+      int[] arr= new int[n];
+      for(int i=0;i<n;i++) arr[i]=sc.nextInt();
     }
 }
