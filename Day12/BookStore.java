@@ -51,52 +51,40 @@ n == customers.length == grumpy.length
 grumpy[i] is either 0 or 1.
  */
 import java.util.*;
-public class BookStore {
-    static int maxsub(int[] cust, int n, int g){
-        int maxsum=Integer.MIN_VALUE, index=0;
-        int sum=0,ind=0;
-        for(int i=0;i<g;i++){
-            sum+=cust[i];
-        }      
-        if(sum>maxsum){
-            maxsum=sum;
-            index=ind;
+public class BookStore{
+    public static int helper(int n, int[] arr, int[] arr2, int k){
+        int sum = 0;
+        for(int i=0;i<n;i++){
+            if(arr2[i] == 0)sum += arr[i];
         }
-        for(int i=g;i<n;i++){
-            ind++;
-            sum-=cust[i-g]+cust[i];
-            if(maxsum<sum){
-                maxsum=sum;
-                index=ind;
+        
+        int tsum = 0;
+        for(int i=0;i<k;i++){
+            if(arr2[i] == 1){
+                tsum += arr[i];
             }
         }
-        return index;
-    }
-    static int sat(int n, int[] cust, int[] grump, int g){
-        int sum=0;
-        int w=maxsub(cust, n, g);
-        int i;
-        for( i=0;i<w;i++){
-            if(grump[i]==0) sum+=cust[i];
-        }
-        for( i=w;i<w+g;i++) sum+=cust[i];
-        if(i<n-1){
-            while(i<n){
-                if(grump[i]==0) sum+=cust[i];
-                i++;
+        int maxSum = tsum;
+        int fp = 0;
+        for(int i=k;i<n;i++){
+            if(arr2[i-k] == 1){
+                tsum -= arr[i-k];
             }
+            if(arr2[i] == 1){
+                tsum += arr[i];
+            }
+            maxSum = Math.max(maxSum, tsum);
         }
-
-        return sum;
+        return maxSum + sum;
     }
-    public static void main(String[] args){
-        Scanner sc= new Scanner(System.in);
-        int n=sc.nextInt();
-        int[] cust= new int[n];
-        int[] grump= new int[n];
-        for(int i=0;i<n;i++) cust[i]=sc.nextInt();
-        for(int i=0;i<n;i++) grump[i]=sc.nextInt();
-        int g=sc.nextInt();
-        System.out.println(sat(n,cust,grump,g));
-    }
+    public static void main(String[] arhs){
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr1 = new int[n];
+        int[] arr2 = new int[n];
+        for(int i=0;i<n;i++)arr1[i] = sc.nextInt();
+        for(int i=0;i<n;i++)arr2[i] = sc.nextInt();
+        int k = sc.nextInt();
+        System.out.println(helper(n,arr1,arr2,k));
+}
 }

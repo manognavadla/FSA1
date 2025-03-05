@@ -38,32 +38,26 @@ Constraints:
 1 <= nums[i] <= 10^9
 
  */
-// import java.util.*;
-public class ImpossibleOr {
-    // static int or(int n, int[] arr){
-    //     List<Integer> res=new ArrayList<>();
-    //     for(int i=0;i<n-1;i++){
-    //         for(int j=i+1;j<n;j++){
-    //             res.add((arr[i]|arr[j]));
-    //         }
-    //     }
-    //     Collections.sort(res);
-    //     int c=1;
-    //     for(int i : res){
-            
-    //         if(c!= i) return c;c++;
-
-    //     }
-    //     return c;
-        
-    // }
-    // public static void main(String[] args) {
-    //     Scanner sc= new Scanner(System.in);
-    //     int n=sc.nextInt();
-    //     int[] arr= new int[n];
-    //     for(int i=0;i<n;i++){
-    //         arr[i]=sc.nextInt();
-    //     }
-    //     System.out.println(or(n, arr));
-    // }
+import java.util.*;
+class ImpossibleOr{
+    public static void main(String args[]){
+        Scanner sc=new Scanner(System.in);
+        int n=sc.nextInt();
+        int[] nums=new int[n];
+        for(int i=0;i<n;i++){
+            nums[i]=sc.nextInt();
+        }
+        System.out.println(missing(nums));
+    }
+    private static int missing(int[] nums){
+        Set<Integer> set=new HashSet<>();
+        for(int num:nums){
+            set.add(num);
+        }
+        int missing=1;
+        while(set.contains(missing)){
+            missing<<=1;
+        }
+        return missing;
+    }
 }
