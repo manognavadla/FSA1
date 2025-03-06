@@ -57,6 +57,16 @@ class Segment{
     }
 }
 class SegmentTreeTest{
+    static void segmenttree(int[] arr, int[][] oper, int n, int op){
+        Segment head= build(arr, 0, n-1);
+        for(int  i=0;i<op;i++){
+            if(oper[i][0]==1){
+                System.out.println(sumRange(head,oper[i][1],oper[i][2]));
+            }else if(oper[i][0]==2){
+                update(head,oper[i][1],oper[i][2]);
+            }
+        }
+    }
     public static Segment build(int[] nums, int start, int end){
         if(start>end) return null;
         else
@@ -72,22 +82,20 @@ class SegmentTreeTest{
         }
     }
     public static int sumRange(Segment root, int start, int end) {
-        if (root == null || start > root.end || end < root.start) return 0; // Out of range
-        if (start <= root.start && end >= root.end) return root.sum; // Full coverage
-        return sumRange(root.left, start, end) + sumRange(root.right, start, end); // Partial overlap
+        if (root == null || start > root.end || end < root.start) return 0; 
+        if (start <= root.start && end >= root.end) return root.sum;
+        return sumRange(root.left, start, end) + sumRange(root.right, start, end); 
     }
-
-    // Update Query
-    public static void update(Segment root, int index, int value) {
+        public static void update(Segment root, int index, int value) {
         if (root == null) return;
-        if (root.start == root.end && root.start == index) { // Leaf node
+        if (root.start == root.end && root.start == index) { 
             root.sum = value;
             return;
         }
         int mid = root.start + (root.end - root.start) / 2;
         if (index <= mid) update(root.left, index, value);
         else update(root.right, index, value);
-        root.sum = root.left.sum + root.right.sum; // Recalculate sum
+        root.sum = root.left.sum + root.right.sum; 
     }
     public static void main(String[] args){
         Scanner sc= new Scanner(System.in);
@@ -101,5 +109,6 @@ class SegmentTreeTest{
                 oper[i][j]=sc.nextInt();
             }
         }
+        segmenttree(arr, oper, n, op);
     }
 }
