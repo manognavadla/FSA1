@@ -89,7 +89,7 @@ Constraints:
 ------------
 1) 1 <= k <= calories.length <= 10^5
 2) 0 <= calories[i] <= 20000
-3) 0 <= lower <= upper
+3) 0 <= lower <= upper 
 
  */
 import java.util.*;

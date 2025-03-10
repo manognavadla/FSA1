@@ -57,7 +57,7 @@ Sample Output-3:
 Explanation:
 -------------
 Since K = 0, the array remains unchanged.
- */
+ */ 
 import java.util.*;
 
 public class RotateArray{

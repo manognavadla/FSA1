@@ -37,7 +37,7 @@ The number of distinct elements in each subarray of size P goes as follows:
 
 
 Sample Input-2:
----------------
+--------------- 
 6 3
 1 1 1 1 1 1
 

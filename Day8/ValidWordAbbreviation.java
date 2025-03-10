@@ -19,7 +19,7 @@ Line-2: A string, abbr contains lowercase letters and digits
 Output Format:
 --------------
 Line-1: A boolean value.
-Sample Input-1:
+Sample Input-1: 
 ---------------
 internationalization
 i12iz4n

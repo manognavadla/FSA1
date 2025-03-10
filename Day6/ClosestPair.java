@@ -78,7 +78,7 @@ public class ClosestPair{
             }
             if(sum==k) break;
             if(sum<k) i++;
-            else if(sum>k) j--;
+            else if(sum>k) j--; 
         }
         return res;
     }

@@ -71,7 +71,7 @@ class Solution
 		return slow;
 	}
 	boolean isPalindrome(Node head) 
-	{ 
+	{  
 		if(head.next==null || head==null) return true;
         Node mid=printMiddle(head);
         Node middle= reverse(mid.next);

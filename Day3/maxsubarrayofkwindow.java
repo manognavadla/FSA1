@@ -30,7 +30,7 @@ Maximum of subarray {1, 2, 3} is 3
 Maximum of subarray {2, 3, 1} is 3
 Maximum of subarray {3, 1, 4} is 4
 Maximum of subarray {1, 4, 5} is 5
-Maximum of subarray {4, 5, 2} is 5
+Maximum of subarray {4, 5, 2} is 5 
 Maximum of subarray {5, 2, 3} is 5
 Maximum of subarray {2, 3, 6} is 6
 */
