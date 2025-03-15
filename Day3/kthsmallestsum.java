@@ -60,4 +60,23 @@ The subarrays of 2 2 4 4 are
 
 The 7th smallest is 8
  */
- 
+ import java.util.*;
+ import java.util.function.Predicate;
+ class kthsmallestsum{
+    // static int[][] game;
+    public static void main(String[] args) {
+        char[][] ticTacToe = new char[3][3];                 
+
+        ticTacToe[0][0] = 'X';                               
+        
+        ticTacToe[1][1] = 'X';
+        
+         ticTacToe[2][2] = 'X';
+        
+         // r1
+        
+         // r2
+        
+         System.out.println(ticTacToe.length + " in a row!"); // r3
+    }
+ }
