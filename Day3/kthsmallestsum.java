@@ -61,22 +61,48 @@ The subarrays of 2 2 4 4 are
 The 7th smallest is 8
  */
  import java.util.*;
- import java.util.function.Predicate;
  class kthsmallestsum{
-    // static int[][] game;
-    public static void main(String[] args) {
-        char[][] ticTacToe = new char[3][3];                 
+   static int kthsmallest(int n, int[] arr, int k){
+      int min=Integer.MAX_VALUE;
+      int high=0;
+      for(int i=0;i<n;i++){
+         min=Math.min(arr[i],min);
+         high+=arr[i];
+      }
+      int low= min;
+      while (low < high){
+      int mid = (low+high) / 2 ;
+      int count = countSubarrays(arr, mid);
+      if (count < k)
+      low = mid + 1;
+      else
+      high = mid;
+      }
+      return low;
+   }
+    static int countSubarrays(int[] nums, int mid){
+   int count = 0;
+   int sum = 0;
+   int length = nums.length;
+   int left = 0, right = 0;
+   while (right < length){
+   sum += nums[right];
+   while (sum > mid){
+   sum -= nums[left];
+   left++;
+   }
+   count += right - left + 1;
+   right++;
+   }
+   return count;
+   }
 
-        ticTacToe[0][0] = 'X';                               
-        
-        ticTacToe[1][1] = 'X';
-        
-         ticTacToe[2][2] = 'X';
-        
-         // r1
-        
-         // r2
-        
-         System.out.println(ticTacToe.length + " in a row!"); // r3
-    }
+   public static void main(String[] args) {
+      Scanner sc= new Scanner(System.in);
+      int n=sc.nextInt();
+      int k=sc.nextInt();
+      int[] arr= new int[n];
+      for(int i=0;i<n;i++) arr[i]=sc.nextInt();
+      System.out.println(kthsmallest(n, arr, k));
+   }
  }
