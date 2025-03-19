@@ -332,7 +332,7 @@ Expected Output Columns:
 | min_salary_90s |
 +----------------+
 
-*/
+*/ 
 USE test;
 select min(sal) as min_salary_90s from emp where year(hiredate) between 1990 and 2000;
 
