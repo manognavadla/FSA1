@@ -27,7 +27,7 @@ Reference only to literal values.
 
 Multiple references to any column of the base table.
 
---------------------------------------------------------------------------------
+----------x----------------------------------------------------------------------
 
 You can check if a view in a database in updatable by querying the 
 is_updatable column from the views table in the information_schema database.

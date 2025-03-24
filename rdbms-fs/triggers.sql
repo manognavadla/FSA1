@@ -158,3 +158,34 @@ DELIMITER ;
 insert into customers values(10, "Ravi", 25);
 insert into customers values(20, "Subbu", 15);
 
+/* before update and age updation below */
+DELIMITER $$
+CREATE TRIGGER before_cust_update_age
+    BEFORE UPDATE ON customers
+    FOR EACH ROW 
+BEGIN
+    if(NEW.age < 20)
+	THEN
+		SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'Warning: Age cannot be lesser than 20';
+	END IF;
+
+
+END$$
+DELIMITER ;
+
+DELIMITER $$
+CREATE TRIGGER before_cust_updateageold
+    BEFORE UPDATE ON customers
+    FOR EACH ROW 
+BEGIN
+    if(NEW.age < 20)
+	THEN
+		SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'Warning: Age cannot be lesser than 20';
+	END IF; if(NEW.age < 20)
+	THEN
+		SIGNAL SQLSTATE '02000' SET MESSAGE_TEXT = 'Warning: Age cannot be lesser than 20';
+	END IF;
+
+
+END$$
+DELIMITER ;

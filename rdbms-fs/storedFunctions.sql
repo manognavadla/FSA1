@@ -4,7 +4,7 @@ use test;
 
 
 SET GLOBAL log_bin_trust_function_creators = 1;
-
+ 
 DROP function IF EXISTS getSalGrade;
 DELIMITER $$
  

@@ -94,7 +94,7 @@ select @empSalGrade;
 
 # ------------------------------------------
 DROP PROCEDURE IF EXISTS getEmpSalGrade2;
-DELIMITER $$
+DELIMITER $$ 
  
 CREATE PROCEDURE getEmpSalGrade2(
     in  p_empNo int, 
