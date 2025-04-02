@@ -25,7 +25,7 @@ employee counts, including departments with no employees, using RIGHT JOIN.
 +--------+------------+-----------+
 | deptno | dname      | emp_count |
 +--------+------------+-----------+
-*/
+*/ 
 USE test; 
 
 select d.deptno, d.dname, count(e.ename) as emp_count from emp e right join dept d on e.deptno=d.deptno group by d.deptno ;/* Write a SQL query to simulate a FULL OUTER JOIN to list all employees and 

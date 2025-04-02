@@ -113,7 +113,7 @@ Expected Output Columns:
 +------+----------+------------+
 
 */
-USE test;
+USE test; 
 select ename, job, mgr from emp where mgr is null;
 /*13 Get clerks or analysts hired between 1996 and 2000
 

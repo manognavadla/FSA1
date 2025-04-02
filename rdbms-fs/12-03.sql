@@ -138,7 +138,7 @@ Expected Output Columns:
 +---------+
 
 */
-USE test;
+USE test; 
 select dname from dept where deptno not in (select distinct(deptno) from emp);
 
 32:

@@ -202,6 +202,6 @@ excluding salesmen, ordered by total salary.
 +--------+----------+
 | deptno | SUM(sal) |
 +--------+----------+
-*/
+*/ 
 USE test; 
 select deptno, sum(sal) from emp where job<> 'SALESMAN' group by deptno having sum(sal)>3000 order by sum(sal);
