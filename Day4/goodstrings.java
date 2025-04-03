@@ -53,7 +53,7 @@ class GoodStrings{
                 }
                 left++;
             }
-            if(map.size()==3 && i-left+1==3){
+            if(map.size()==3 ){
                 res++;
             }
         }

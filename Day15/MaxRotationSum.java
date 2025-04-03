@@ -25,6 +25,38 @@ Input: 1
 100
 Output: 0
  */
-public class maxSum {
-    
+import java.util.*;
+
+public class MaxRotationSum {
+    public static int maxRotateFunction(int[] nums) {
+        int n = nums.length;
+        int sum = 0, F = 0;
+
+        // Compute sum of all elements and initial F(0)
+        for (int i = 0; i < n; i++) {
+            sum += nums[i];
+            F += i * nums[i];
+        }
+
+        int maxF = F;
+
+        // Use the formula to compute F(k) iteratively
+        for (int k = 1; k < n; k++) {
+            F = F + sum - n * nums[n - k]; 
+            maxF = Math.max(maxF, F);
+        }
+
+        return maxF;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] nums = new int[n];
+        for (int i = 0; i < n; i++) {
+            nums[i] = sc.nextInt();
+        }
+        System.out.println(maxRotateFunction(nums));
+        sc.close();
+    }
 }

@@ -68,3 +68,41 @@ class MaxScore{
         
     }
 }
+/*
+import java.util.*;
+
+class MaxScore {
+    public static int score(int n, int[] arr) {
+        Set<Integer> uniqueElements = new HashSet<>();
+        int maxSum = 0, currentSum = 0;
+        int start = 0;
+
+        for (int end = 0; end < n; end++) {
+            while (uniqueElements.contains(arr[end])) {
+                uniqueElements.remove(arr[start]); // Remove the leftmost element
+                currentSum -= arr[start]; // Subtract from sum
+                start++; // Move the start of the window forward
+            }
+
+            // Add the new unique element
+            uniqueElements.add(arr[end]);
+            currentSum += arr[end];
+            maxSum = Math.max(maxSum, currentSum);
+        }
+
+        return maxSum;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] arr = new int[n];
+        for (int i = 0; i < n; i++) {
+            arr[i] = sc.nextInt();
+        }
+        System.out.println(score(n, arr));
+        sc.close();
+    }
+}
+
+ */

@@ -57,6 +57,32 @@ Constraints:
 1 <= time[i], totalTrips <= 10^7
 
  */
+import java.util.*;
 public class BinaryTrips {
-    
+  static long bint(int[] arr, int totalTrips){
+    long min=Integer.MAX_VALUE,ans=0;
+    for(int i=0;i<arr.length;i++)min= Math.min(min,arr[i]);
+    long low=1,high=min*totalTrips;
+    while(low<=high){
+      long mid= low + (high - low) / 2;
+      long trips=0;
+      for(int t:arr) {trips+=mid/t;
+      if(trips>= totalTrips) break;
+    }
+    if(trips>=totalTrips){
+      ans=mid;
+      high=mid-1;
+    }else{low=mid+1;}
+    }
+    return ans;
+  }
+    public static void main(String[] args) {
+      Scanner sc= new Scanner(System.in);
+      int n=sc.nextInt();
+      int[] arr= new int[n];
+      for(int i=0;i<n;i++) arr[i]=sc.nextInt();
+      int totalTrips=sc.nextInt();
+      System.out.println(bint(arr, totalTrips));
+    }
 }
+ 

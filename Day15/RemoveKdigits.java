@@ -27,7 +27,7 @@ public class RemoveKdigits{
         int n=s.length();
         if(k==n) return 0;
         if(k==0) return Integer.parseInt(s);
-        List<Character> res= new ArrayList<>();
+        // List<Character> res= new ArrayList<>();
         StringBuilder sb = new StringBuilder();
         int i;
         for(i=0;i<n-1 && k>0;i++){

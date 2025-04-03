@@ -48,7 +48,7 @@ class TreapNode
         this.priority = new Random().nextInt(1000);
         this.left = this.right = null;
     }
-}
+} 
 
 class KthLargest
 {

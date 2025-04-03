@@ -60,6 +60,7 @@ class CountingBits{
         arr[0]=0;
         for(int i=1;i<=n;i++){
             arr[i]=ones(i);
+            
         }
         return arr;
     }

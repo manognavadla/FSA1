@@ -74,27 +74,27 @@ The 7th smallest is 8
       int mid = (low+high) / 2 ;
       int count = countSubarrays(arr, mid);
       if (count < k)
-      low = mid + 1;
+      low = mid + 1; 
       else
       high = mid;
       }
       return low;
    }
-    static int countSubarrays(int[] nums, int mid){
-   int count = 0;
-   int sum = 0;
-   int length = nums.length;
-   int left = 0, right = 0;
-   while (right < length){
-   sum += nums[right];
-   while (sum > mid){
-   sum -= nums[left];
-   left++;
-   }
-   count += right - left + 1;
-   right++;
-   }
-   return count;
+   static int countSubarrays(int[] nums, int mid){
+      int count = 0;
+      int sum = 0;
+      int length = nums.length;
+      int left = 0, right = 0;
+      while (right < length){
+         sum += nums[right];
+         while (sum > mid){
+            sum -= nums[left];
+            left++;
+         }
+         count += right - left + 1;
+         right++;
+      }
+      return count;
    }
 
    public static void main(String[] args) {

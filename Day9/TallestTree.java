@@ -45,7 +45,41 @@ Sample Output-2:
 ----------------
 0
  */
+import java.util.*;
+
 public class TallestTree {
-    
+    public static int longestTreeArrangement(int[] heights) {
+		int n=heights.length;
+		int[] inc= new int[n];
+		int max=Integer.MIN_VALUE;
+		int[]dec= new int[n];
+		if(n<3)return 0;
+		for(int i=1;i<n;i++){
+			if(heights[i]>heights[i-1]){
+				inc[i]=inc[i-1]+1;
+			}
+		}
+		for(int i=n-2;i>=0;i--){
+			if(heights[i]>heights[i+1]){
+				dec[i]=dec[i+1]+1;
+			}
+		}
+		for(int i=1;i<n;i++){
+			if(inc[i]>0 && dec[i]>0){
+				max=Math.max(max, inc[i]+dec[i]+1);
+
+			}
+		}
+		return max>3? max:0;
+    }
+
+    public static void main(String[] args) {
+        Scanner sc = new Scanner(System.in);
+        int n = sc.nextInt();
+        int[] heights = new int[n];
+        for (int i = 0; i < n; i++) {
+            heights[i] = sc.nextInt();
+        }
+        System.out.println(longestTreeArrangement(heights));
+    }
 }
- 

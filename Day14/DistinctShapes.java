@@ -54,52 +54,37 @@ Sample Output-2:
  */
 import java.util.*;
 
-class DistinctShapesBFS {
-    static int[][] directions = {{1, 0}, {-1, 0}, {0, 1}, {0, -1}}; // Down, Up, Right, Left
+class DistinctShapes{
+    public static int numDistinctIslands(int[][] grid) {
+        int rows = grid.length, cols = grid[0].length;
+        Set<String> uniqueIslands = new HashSet<>();
+        boolean[][] visited = new boolean[rows][cols];
 
-    public static int countDistinctShapes(int[][] wall,int m,int n) {
-        boolean[][] visited = new boolean[m][n];
-        Set<String> uniqueShapes = new HashSet<>();
-
-        for (int i = 0; i < m; i++) {
-            for (int j = 0; j < n; j++) {
-                if (wall[i][j] == 1 && !visited[i][j]) {
-                    String shape = bfs(i, j, wall, visited);
-                    uniqueShapes.add(shape);
+        for (int i = 0; i < rows; i++) {
+            for (int j = 0; j < cols; j++) {
+                if (grid[i][j] == 1 && !visited[i][j]) {
+                    List<String> shape = new ArrayList<>();
+                    dfs(grid, i, j, visited, shape, i, j);
+                    uniqueIslands.add(String.join(",", shape));
                 }
             }
         }
-
-        return uniqueShapes.size();
+        return uniqueIslands.size();
     }
 
-    private static String bfs(int x, int y, int[][] wall, boolean[][] visited) {
-        int rows = wall.length, cols = wall[0].length;
-        Queue<int[]> queue = new LinkedList<>();
-        List<String> shape = new ArrayList<>();
-        queue.offer(new int[]{x, y});
-        visited[x][y] = true;
-        int baseX = x, baseY = y;
-
-        while (!queue.isEmpty()) {
-            int[] cell = queue.poll();
-            int curX = cell[0], curY = cell[1];
-            shape.add((curX - baseX) + "," + (curY - baseY)); // Relative position
-
-            for (int[] dir : directions) {
-                int newX = curX + dir[0], newY = curY + dir[1];
-                if (newX >= 0 && newX < rows && newY >= 0 && newY < cols &&
-                    wall[newX][newY] == 1 && !visited[newX][newY]) {
-                    visited[newX][newY] = true;
-                    queue.offer(new int[]{newX, newY});
-                }
-            }
+    private static void dfs(int[][] grid, int i, int j, boolean[][] visited, List<String> shape, int baseRow, int baseCol) {
+        if (i < 0 || j < 0 || i >= grid.length || j >= grid[0].length || visited[i][j] || grid[i][j] == 0) {
+            return;
         }
 
-        Collections.sort(shape); 
-        return String.join("|", shape); 
-    }
+        visited[i][j] = true;
+        shape.add((i - baseRow) + "_" + (j - baseCol)); // Store relative position
 
+        int[][] directions = {{0, 1}, {1, 0}, {0, -1}, {-1, 0}}; // Right, Down, Left, Up
+        for (int[] d : directions) {
+            dfs(grid, i + d[0], j + d[1], visited, shape, baseRow, baseCol);
+        }
+    }
     public static void main(String[] args) {
        Scanner sc= new Scanner(System.in);
        int m=sc.nextInt();
@@ -110,6 +95,6 @@ class DistinctShapesBFS {
             wall[i][j]=sc.nextInt();
         }
        }
-       System.out.println(countDistinctShapes(wall, m,n));
+       System.out.println(numDistinctIslands(wall));
     }
 }

@@ -36,7 +36,7 @@ class ReverseVowels{
                 str[j]=t;
                 i++;j--;
             }
-            else if(v.contains(str[i])&& ! v.contains(str[j])) j--;
+            else if(v.contains(str[i])&& !v.contains(str[j])) j--;
             else if(!v.contains(str[i]) && v.contains(str[j]) ) i++;
             else{
                 i++;
