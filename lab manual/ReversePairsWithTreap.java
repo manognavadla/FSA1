@@ -8,12 +8,11 @@ Output: 2
 Example 2:
 Input: nums = [2,4,3,5,1]
 Output: 3
-Constraints:
+Constraints: 
 1 <= nums.length <= 5 * 104
 -2^31 <= nums[i] <= 2^31 – 1
  */
 import java.util.*;
-
 class TreapNode {
     long key;
     int priority, count, size;
@@ -25,8 +24,6 @@ class TreapNode {
         this.count = 1;
         this.size = 1;
     }
-
-    // Update the size of the subtree rooted at this node
     void updateSize() {
         this.size = this.count + getSize(left) + getSize(right);
     }
@@ -35,9 +32,7 @@ class TreapNode {
         return (node == null) ? 0 : node.size;
     }
 }
-
 class Treap {
-    // Right rotation
     static TreapNode rotateRight(TreapNode y) {
         TreapNode x = y.left;
         y.left = x.right;
@@ -46,8 +41,6 @@ class Treap {
         x.updateSize();
         return x;
     }
-
-    // Left rotation
     static TreapNode rotateLeft(TreapNode x) {
         TreapNode y = x.right;
         x.right = y.left;
@@ -56,8 +49,6 @@ class Treap {
         y.updateSize();
         return y;
     }
-
-    // Insert key into treap
     static TreapNode insert(TreapNode root, long key) {
         if (root == null) return new TreapNode(key);
         if (key == root.key) {
@@ -74,7 +65,6 @@ class Treap {
         root.updateSize();
         return root;
     }
-    // Count number of nodes with key < val
     static int countLessThan(TreapNode root, long val) {
         if (root == null) return 0;
 
@@ -86,7 +76,6 @@ class Treap {
     }
 }
 public class ReversePairsWithTreap {
-    // Main logic for counting reverse pairs
     public static int reversePairs(int[] nums) {
         TreapNode root = null;
         int count = 0;
@@ -98,18 +87,15 @@ public class ReversePairsWithTreap {
 
         return count;
     }
-
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter array length: ");
         int n = sc.nextInt();
-
         int[] nums = new int[n];
         System.out.println("Enter array elements:");
         for (int i = 0; i < n; i++) {
             nums[i] = sc.nextInt();
         }
-
         int result = reversePairs(nums);
         System.out.println("Reverse Pairs: " + result);
     }

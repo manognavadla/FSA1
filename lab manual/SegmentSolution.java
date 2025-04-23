@@ -25,21 +25,18 @@ Sample Output-2:
 5
  */
 import java.util.*;
-
 class SegmentTree {
     int start, end, sum;
     SegmentTree left, right;
-
     SegmentTree(int start, int end) {
         this.start = start;
         this.end = end;
         this.sum = 0;
     }
-
     static SegmentTree build(int start, int end) {
         SegmentTree node = new SegmentTree(start, end);
         if (start == end) {
-            node.sum = 0; // 0 means day is free
+            node.sum = 0;
         } else {
             int mid = start + (end - start) / 2;
             node.left = build(start, mid);
@@ -51,7 +48,7 @@ class SegmentTree {
     static boolean update(SegmentTree root, int index) {
         if (root.start == root.end) {
             if (root.sum == 1) return false; // already booked
-            root.sum = 1;
+            root.sum = 1; 
             return true;
         } 
         boolean booked = false;
@@ -62,7 +59,6 @@ class SegmentTree {
         if (booked) root.sum = root.left.sum + root.right.sum;
         return booked;
     }
-    // Finds the earliest available day in range [start, end]
     static int findAvailable(SegmentTree root, int start, int end) {
         if (root == null || root.sum == (root.end - root.start + 1) || end < root.start || start > root.end)
             return -1;
@@ -77,24 +73,20 @@ public class SegmentSolution {
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         int n = sc.nextInt();
-        sc.nextLine(); // clear the newline
+        sc.nextLine();
 
         String[] input = sc.nextLine().split(",");
         int[][] programs = new int[n][2];
         int maxDay = 0;
-
         for (int i = 0; i < n; i++) {
             String[] parts = input[i].trim().split(" ");
             programs[i][0] = Integer.parseInt(parts[0]);
             programs[i][1] = Integer.parseInt(parts[1]);
             maxDay = Math.max(maxDay, programs[i][1]);
         }
-        // Sort programs by end day to prioritize shorter availability
         Arrays.sort(programs, (a, b) -> a[1] - b[1]);
-
         SegmentTree root = SegmentTree.build(1, maxDay);
         int count = 0;
-
         for (int[] prog : programs) {
             int availableDay = SegmentTree.findAvailable(root, prog[0], prog[1]);
             if (availableDay != -1) {
@@ -102,7 +94,6 @@ public class SegmentSolution {
                 count++;
             }
         }
-
         System.out.println(count);
     }
 }

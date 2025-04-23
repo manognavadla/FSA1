@@ -83,3 +83,37 @@ public class TallestTree {
         System.out.println(longestTreeArrangement(heights));
     }
 }
+
+/*
+ * class Solution {
+    public int longestMountain(int[] arr) {
+        int n = arr.length, max = 0, i = 1;
+
+        while (i < n - 1) {
+            // Check if arr[i] is a peak
+            if (arr[i - 1] < arr[i] && arr[i] > arr[i + 1]) {
+                int left = i - 1;
+                int right = i + 1;
+
+                // Expand to the left
+                while (left > 0 && arr[left - 1] < arr[left]) {
+                    left--;
+                }
+
+                // Expand to the right
+                while (right < n - 1 && arr[right] > arr[right + 1]) {
+                    right++;
+                }
+
+                max = Math.max(max, right - left + 1);
+                i = right; // skip to the end of current mountain
+            } else {
+                i++;
+            }
+        }
+
+        return max;
+    }
+}
+
+ */
