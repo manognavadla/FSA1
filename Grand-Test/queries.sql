@@ -3,7 +3,7 @@ Write a SQL query to calculate the total revenue per customer, excluding cancell
 for those with at least two orders between October 10 and October 15, 2024.
 
 Expected Output Columns:
-------------------------
+------------------------ 
 +----------------+--------------+
 | Name           | TotalRevenue |
 +----------------+--------------+

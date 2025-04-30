@@ -1,8 +1,9 @@
 USE test
+DROP TABLE IF EXISTS OrderItems;
+DROP TABLE IF EXISTS Order;
+
 DROP TABLE IF EXISTS customers;
 DROP TABLE IF EXISTS Products;
-DROP TABLE IF EXISTS Order;
-DROP TABLE IF EXISTS OrderItems;
 CREATE TABLE Customers (
   CustomerID INT PRIMARY KEY,
   Name VARCHAR(255),
@@ -13,7 +14,7 @@ CREATE TABLE Customers (
 
 CREATE TABLE Products (
   ProductID INT PRIMARY KEY,
-  Name VARCHAR(255),
+  Name VARCHAR(255), 
   Description VARCHAR(255),
   Price DECIMAL(10, 2)
 );
