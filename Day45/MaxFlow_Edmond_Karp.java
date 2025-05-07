@@ -68,7 +68,7 @@ class MaxFlowEK
     {
         int[][] residualGraph = new int[V][V];
         for (int i = 0; i < V; i++) 
-		{
+		{ 
             for (int j = 0; j < V; j++) 
 			{
                 residualGraph[i][j] = graph[i][j];

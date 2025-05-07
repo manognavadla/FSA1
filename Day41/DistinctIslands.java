@@ -1,4 +1,3 @@
-package Day41;
 /*
  * Ibrahim is an interior designer wants to color wall of size M*N. 
 He plans to color the wall and put lights of two different colors
@@ -95,32 +94,56 @@ class Solution
         }
     }
     
-    public int numDistinctIslands(int[][] grid) 
-	{
+    public int numDistinctIslands(int[][] grid)
+    {
+        int nr = grid.length;
+        int nc = grid[0].length;
+        DisjointSet ds = new DisjointSet(nr * nc);
         
-        int row=grid.length;
-        int col= grid[0].length;
-	    //Write your code here and return an integer, number of distinct shapes formed
-        DisjointSet dus= new DisjointSet(row*col);
-        for(int i=0;i<row;i++){
-            for(int j=0;j<col;j++){
-                if(grid[i][j]==1){
-                    int findex=i*col+j;
-                    
-                    for(int k=0;k<4;k++){
-                        int x=i+dRow[k];
-                        int y=j+dCol[k];
-                        if(x>=0 && x<row && y>=0 && y<col && grid[x][y]==1){
-                            int find=x*col+y;
-                            dus.union(x,y);
-                        }
+        for (int i=0; i<nr; i++)
+        {
+            for (int j=0; j<nc; j++)
+            {
+                if (grid[i][j] == 1)
+                {
+                for (int k=0; k<4; k++)
+                    {
+                    int row = i + dRow[k];
+                    int col = j + dCol[k];
+                    if (row >= 0 && row < nr && col >= 0 && col <nc && grid[row][col] == 1){  
+                        ds.union(i*nc + j, row*nc + col);
                     }
                 }
             }
+            }
         }
-	}
-}
+        String []pattern = new String[nr*nc];
+        for(int i=0; i < nr*nc; i++)
+            pattern[i]= "";
+        for(int i=0;i < nr; i++)
+        {
+            for(int j=0; j<nc; j++)
+            {
+            if(grid[i][j]==0)
+                continue;
+            int parent = ds.find(i*nc+j);
+            pattern[parent] += String.valueOf(i*nc + j-parent);
+            }
+        }
+        
+        Set<String>tmp = new HashSet<>();
+        for(int i=0;i<nr*nc; i++)
+            {
+            if(pattern[i].length()!=0)
+                {
+                tmp.add(pattern[i]);
+                }
+        }
+        return tmp.size();
+    }
+    
 
+}
 public class DistinctIslands
 {
 	public static void main(String args[]){
@@ -135,3 +158,42 @@ public class DistinctIslands
 		System.out.println(new Solution().numDistinctIslands(grid));
 	}
 }
+
+
+/*
+ * import java.util.*;
+
+class Solution {
+    public int numDistinctIslands(int[][] grid) {
+        int m = grid.length, n = grid[0].length;
+        boolean[][] visited = new boolean[m][n];
+        Set<String> shapes = new HashSet<>();
+
+        for (int i = 0; i < m; i++) {
+            for (int j = 0; j < n; j++) {
+                if (grid[i][j] == 1 && !visited[i][j]) {
+                    List<String> path = new ArrayList<>();
+                    dfs(grid, visited, i, j, i, j, path);
+                    shapes.add(String.join(",", path));
+                }
+            }
+        }
+
+        return shapes.size();
+    }
+
+    private void dfs(int[][] grid, boolean[][] visited, int i, int j, int baseRow, int baseCol, List<String> path) {
+        int m = grid.length, n = grid[0].length;
+        if (i < 0 || i >= m || j < 0 || j >= n || grid[i][j] == 0 || visited[i][j]) return;
+
+        visited[i][j] = true;
+        path.add((i - baseRow) + "_" + (j - baseCol));  // Relative position
+
+        dfs(grid, visited, i - 1, j, baseRow, baseCol, path); // up
+        dfs(grid, visited, i + 1, j, baseRow, baseCol, path); // down
+        dfs(grid, visited, i, j - 1, baseRow, baseCol, path); // left
+        dfs(grid, visited, i, j + 1, baseRow, baseCol, path); // right
+    }
+}
+
+ */

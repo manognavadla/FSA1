@@ -71,7 +71,7 @@ class DisjointSet
 }
 
 class LAN
-{
+{ 
 	
     public static int[] findRedundantConnection(int[][] edges) {
         int n = edges.length;

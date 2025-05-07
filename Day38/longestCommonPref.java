@@ -1,4 +1,3 @@
-package Day38;
 /*
  * Mr.Uday is trying to develop a software which reads array of strings from user and gives the
 longest common prefix of those strings, if no common prefix then it will give empty string. 
@@ -72,9 +71,29 @@ class Trie {
     }
     
     public String longestCommonPrefix() {
-        //Write your code here and return string
-        String res=new String();
-        return res;
+        TrieNode curr = this.root;
+        StringBuilder prefix = new StringBuilder();
+
+        while (true) {
+            int count = 0;
+            TrieNode next = null;
+
+            for (int i = 0; i < 26; i++) {
+                if (curr.children[i] != null) {
+                    count++;
+                    next = curr.children[i];
+                }
+            }
+
+            if (count != 1 || curr.isEnd) {
+                break;
+            }
+
+            prefix.append(next.val);
+            curr = next;
+        }
+
+        return prefix.toString();
     }
     
    

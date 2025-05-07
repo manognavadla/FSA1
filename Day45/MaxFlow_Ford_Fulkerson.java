@@ -110,10 +110,7 @@ class MaxFlowFF
 		// Standard DFS Loop
 		while (!stack.isEmpty()) 
 		{
-			System.out.print("Stack " + stack);
 			int u = stack.pop();
-			System.out.println(" u " + u);
-
 			for (int v = 0; v < V; v++) 
 			{
 				if (visited[v] == false	&& rGraph[u][v] > 0) 
@@ -129,15 +126,13 @@ class MaxFlowFF
 					stack.push(v);
 					parent[v] = u;
 					visited[v] = true;
-					System.out.println("parent " + u + " child " + v + " rGraph " + rGraph[u][v] + " visited[v] " + visited[v]);
 				}
 			}
 		}
-
 		// We didn't reach sink in BFS starting from source, so return false
 		return false;
 	}
-
+ 
 	// Returns the maximum flow from s to t in the given graph
 	int fordFulkerson(int graph[][], int s, int t)
 	{
@@ -170,7 +165,6 @@ class MaxFlowFF
 			{
 				u = parent[v];
 				path_flow = Math.min(path_flow, rGraph[u][v]);
-				System.out.println("u " + u + " v " + v + " path_flow " + path_flow);
 			}
 
 			System.out.println("Minimum path flow " + path_flow);
@@ -182,12 +176,8 @@ class MaxFlowFF
 				rGraph[u][v] -= path_flow;
 				rGraph[v][u] += path_flow;
 			}
-
-			// Add path flow to overall flow
 			max_flow += path_flow;
 		}
-
-		// Return the overall flow
 		return max_flow;
 	}
 

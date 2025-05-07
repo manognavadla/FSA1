@@ -122,12 +122,22 @@ class Suffix
 				root.insertSuffix(s.substring(i));
 		}
 
+	}// DFS to count nodes in the trie
+	static int countNodes(SuffixTrieNode node) {
+		if (node == null) return 0;
+
+		int count = 0;
+		for (int i = 0; i < 26; i++) {
+			if (node.children[i] != null) {
+				count += countNodes(node.children[i]);
+			}
+		}
+		return count + 1; // count this node
 	}
 
-	// Returns count of distinct substrings of str
-	static int countDistinctSubstring(String str)
-	{
-		//Write your code here
+	static int countDistinctSubstring(String str) {
+		Suffix_trie trie = new Suffix_trie(str);
+		return countNodes(trie.root);
 	}
 
 	public static void main(String args[])
