@@ -97,3 +97,33 @@ class ConnectedComponents_dfs {
         System.out.println(result);
     }
 }
+/*
+ * class Solution {
+    public int makeConnected(int n, int[][] connections) {
+        if(n>connections.length+1) return -1;
+        boolean[] vis= new boolean[n];
+        List<List<Integer>> adjList= new ArrayList<>();
+        for(int i=0;i<n;i++) adjList.add(new ArrayList<>());
+        for(int[] con: connections){
+            adjList.get(con[0]).add(con[1]);
+            adjList.get(con[1]).add(con[0]);
+        }
+        int count=0;
+        for(int i=0;i<n;i++){
+            if(!vis[i]){
+                count++;
+                dfs(adjList, i, vis);
+            }
+        }
+        return count-1;
+    }
+    public void dfs(List<List<Integer>> adjList, int i, boolean[] vis){
+        vis[i]=true;
+        for(Integer j: adjList.get(i)){
+            if(!vis[j]){
+                dfs(adjList, j, vis);
+            }
+        }
+    }
+}
+ */

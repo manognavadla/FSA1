@@ -70,7 +70,7 @@ Their 1-based indices are 1 and 2.
 
  */
 
-    import java.util.*;
+import java.util.*;
 public class TwoSum{
     public static List<Integer> ts(int n, int[] arr,int target){
         int i=0,j=n-1;

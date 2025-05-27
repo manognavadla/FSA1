@@ -76,7 +76,7 @@ public class RearrangeQueue {
                 }
             }
         }
-        List<int[]> result = new ArrayList<>();
+        List<int[]> result = new ArrayList  <>();
         for (int[] person : people) {
             result.add(person[1], person);
         }

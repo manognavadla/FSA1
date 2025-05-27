@@ -54,17 +54,25 @@ class BinaryGap{
         String bs= Integer.toBinaryString(n);
         int i=0,j=-1;
         int l=bs.length();
-        int maxdiff=0;
+        ArrayList<Integer> arr= new ArrayList<>();
         while(i<l){
             if(bs.charAt(i)=='1'){
-                if(j!=-1){
-                    maxdiff=Math.max(maxdiff,i-j);
-                }
-                j=i;
+                arr.add(i);
             }
             i++;
         }
-        return maxdiff;
+     
+        // while(i<l){
+        //     if(bs.charAt(i)=='1'){
+        //         if(j!=-1){
+        //             maxdiff=Math.max(maxdiff,i-j);
+        //         }
+        //         j=i;
+        //     }
+        //     i++;
+        // }
+        Collections.sort(arr);
+        return arr.size()<=1?0:arr.get(arr.size()-1)-arr.get(0);
     }
     public static void main(String[] args){
         Scanner sc= new Scanner(System.in);
