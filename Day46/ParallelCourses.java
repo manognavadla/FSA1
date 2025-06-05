@@ -73,7 +73,7 @@ class ParallelCourses {
             int u = prerequisite[0];
             int v = prerequisite[1];
             graph[u][v] = 1;
-            indegree[v]++;
+            indegree[v]++; 
         }
 
         Queue<Integer> queue = new LinkedList<>();

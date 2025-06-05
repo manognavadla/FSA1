@@ -67,7 +67,7 @@ class Trie{
     Trie[] children=new Trie[26];
     boolean isEnd=false;
     void insert(String word){
-        Trie node =this;
+        Trie node =this; 
         for(char c:word.toCharArray()){
             c-='a';
             if(node.children[c]==null){

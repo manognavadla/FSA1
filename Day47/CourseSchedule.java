@@ -95,7 +95,7 @@ class CourseSchedule
             }
         }
         return sub;
-    }
+    } 
 	
 	public static void main(String args[] ) throws IOException 
 	{	

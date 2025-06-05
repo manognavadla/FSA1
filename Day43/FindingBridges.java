@@ -41,12 +41,9 @@ import java.util.*;
 
 class FindingBridges 
 {
-    private int V;   // No. of vertices    
-	// Array  of lists for Adjacency List Representation
+    private int V;   
     private LinkedList<Integer> adj[];
     int time = 0;
-
-	// Constructor
 	FindingBridges (int v)
     {
         V = v;
@@ -82,9 +79,7 @@ class FindingBridges
             if (!visited[v]) {
                 parent[v] = u;
                 bridgeUtil(v, visited, disc, low, parent);
-
                 low[u] = Math.min(low[u], low[v]);
-
                 if (low[v] > disc[u]) {
                     System.out.println(u + " " + v);
                 }
@@ -94,8 +89,6 @@ class FindingBridges
             }
         }
     }
-
-
     public static void main(String args[])
     {      
         Scanner sc=new Scanner(System.in);

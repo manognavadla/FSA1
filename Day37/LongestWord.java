@@ -16,7 +16,7 @@ Input Format
 -------------
 Line1: Space spearated strings
 
-Output Format
+Output Format 
 --------------
 Line-1: A string 
 

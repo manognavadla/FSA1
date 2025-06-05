@@ -48,7 +48,7 @@ Sample Output-2:
 1
  
  */
-import java.util.*;
+import java.util.*; 
 class ConnectedComponents_dfs {
     public int countComponents(int n, int[][] edges) {
         //Write your code here and return an integer

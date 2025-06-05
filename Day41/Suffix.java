@@ -41,7 +41,7 @@ Sample Input-1:
 ---------------
 abc
 
-Sample Output-1:
+Sample Output-1: 
 ----------------
 6
 
@@ -69,60 +69,41 @@ import java.util.*;
 
 class Suffix
 {
-	// A Suffix Trie (A Trie of all suffixes) Node
 	static class SuffixTrieNode
 	{
 		static final int MAX_CHAR = 26;
 		SuffixTrieNode[] children = new SuffixTrieNode[MAX_CHAR];
 
-		SuffixTrieNode() // Constructor
+		SuffixTrieNode()
 		{
-			// Initialize all child pointers as NULL
 			for (int i = 0; i < MAX_CHAR; i++)
 				children[i] = null;
 		}
-
-		// A recursive function to insert a suffix of the s in
-		// subtree rooted with this node
 		void insertSuffix(String s)
 		{
-			//System.out.println("string " +  s);
-			// If string has more characters
 			if (s.length() > 0)
 			{
-				// Find the first character and convert it into 0-25 range.
 				char cIndex = (char) (s.charAt(0) - 'a');
-
-				// If there is no edge for this character, add a new edge
 				if (children[cIndex] == null)
 				{
 					children[cIndex] = new SuffixTrieNode();
 				}
-
-				// Recur for next suffix
 				children[cIndex].insertSuffix(s.substring(1));
 			}
 		}
 	}
-	
-	// A Trie of all suffixes
 	static class Suffix_trie
 	{
 		static final int MAX_CHAR = 26;
 		SuffixTrieNode root;
-
-		// Constructor (Builds a trie of suffies of the given text)
 		Suffix_trie(String s) 
 		{
 			root = new SuffixTrieNode();
-
-			// Consider all suffixes of given string and insert them into the 
-			// Suffix Trie using recursive function insertSuffix() in SuffixTrieNode class
 			for (int i = 0; i < s.length(); i++)
 				root.insertSuffix(s.substring(i));
 		}
 
-	}// DFS to count nodes in the trie
+	}
 	static int countNodes(SuffixTrieNode node) {
 		if (node == null) return 0;
 
@@ -132,7 +113,7 @@ class Suffix
 				count += countNodes(node.children[i]);
 			}
 		}
-		return count + 1; // count this node
+		return count + 1;
 	}
 
 	static int countDistinctSubstring(String str) {

@@ -18,7 +18,7 @@ class Trie
 			isEndOfWord = false;
 			for (int i = 0; i < NUM_CHARS; i++)
 				children[i] = null;
-		}
+		} 
 	};
 	
 	static TrieNode root;
@@ -63,15 +63,8 @@ class Trie
 	
 			currentNode = currentNode.children[index];
 		}
-	
-		// To check if prefix exists in the Trie
-		// return true;
-
-		// To check for complete word
 		return (currentNode.isEndOfWord);
 	}
-
-	// Returns true if root has no children, else false
     static boolean isEmpty(TrieNode root)
     {
         for (int i = 0; i < NUM_CHARS; i++)
@@ -79,51 +72,31 @@ class Trie
                 return false;
         return true;
     }
-
-	// Recursive function to delete a key from given Trie
     static TrieNode delete(TrieNode root, String key, int depth)
     {
-		//System.out.println("key " + key + " depth " + depth + " root.isEndOfWord " + root.isEndOfWord);
-        // If tree is empty
         if (root == null)
             return null;
- 
-        // If last character of key is being processed
         if (depth == key.length()) 
 		{ 
-			// isDeleted is true if it is end of word and not otherwise
 			isDeleted = root.isEndOfWord;
-            // This node is no more end of word after removal of given key
             if (root.isEndOfWord)
                 root.isEndOfWord = false;
- 
-            // If given is not prefix of any other word
             if (isEmpty(root)) 
 			{
                 return null;
             } 
             return root;
         }
-		
-		// If not last character, recur for the child obtained using ASCII value
         int index = key.charAt(depth) - 'a';
-		//System.out.println("index " + index + " key.charAt(depth) " + key.charAt(depth));
-
 		if (root.children[index] == null)
 				return null;
-
         root.children[index] = delete(root.children[index], key, depth + 1);
- 
-        // If root does not have any child (its only child got
-        // deleted), and it is not end of another word.
         if (isEmpty(root) && root.isEndOfWord == false)
 		{
             return null;
         } 
         return root;
     }
-
-	// To check if current node is leaf node or not
 	static boolean isLeafNode(TrieNode root) 
 	{
 		return root.isEndOfWord == true;

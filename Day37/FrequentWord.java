@@ -61,7 +61,7 @@ class Node
     }
 }
 
-class Trie
+class Trie 
 {
     public Node root;
     public Trie(){

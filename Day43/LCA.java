@@ -129,5 +129,5 @@ class Solution {
             return root;
 
         return (left != null) ? left : right;
-    }
+    } 
 }
