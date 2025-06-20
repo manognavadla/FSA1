@@ -47,7 +47,7 @@ import java.util.*;
 class BinarySubString{
     public static boolean sub(String s,int n){
         Set<String> hs= new HashSet<>();
-        for(int i=0;i<s.length()-n;i++){
+        for(int i=0;i<=s.length()-n;i++){
             hs.add(s.substring(i,i+n));
             if(hs.size()==Math.pow(2,n)) return true;
         }

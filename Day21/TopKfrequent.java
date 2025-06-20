@@ -47,7 +47,7 @@ class TopKfrequent{
         Map<Integer,Integer> hm= new HashMap<>();
         for(int i=0;i<n;i++){
             hm.put(arr[i], hm.getOrDefault(arr[i],0)+1);
-        }
+        } 
         List<Map.Entry<Integer,Integer>> list= new ArrayList<>(hm.entrySet());
         list.sort(Map.Entry.comparingByValue());
         List<Integer> res= new ArrayList<>();

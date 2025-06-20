@@ -43,3 +43,36 @@ Sample Output-2:
 ----------------
 -2
  */
+import java.util.*;
+
+class TreeNode {
+    Integer val;
+    TreeNode left, right;
+
+    TreeNode(Integer val) {
+        this.val = val;
+        this.left = this.right = null;
+    }
+}
+
+class Solution {
+    public int secondHighest(TreeNode root) {
+       
+    }
+
+    
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] input = scanner.nextLine().split(" ");
+        List<Integer> data = new ArrayList<>();
+        for (String s : input) {
+            data.add(Integer.parseInt(s));
+        }
+        scanner.close();
+
+        TreeNode root = buildTree(data);
+        int secondTop = new Solution().secondHighest(root);
+        System.out.println(secondTop);
+    }
+}

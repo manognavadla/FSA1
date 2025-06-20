@@ -10,7 +10,7 @@ Sample Input-1:
 8
 
 
-Sample Output-1: 
+Sample Output-1:
 ----------------
 3
 

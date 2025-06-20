@@ -68,8 +68,39 @@ class TreeNode
 }
 class Solution {
     public TreeNode str2tree(String s) {
+        if (s == null || s.isEmpty()) return null;
         Stack<TreeNode> stack = new Stack<>();
-        //WRITE YOUR CODE HERE
+        int i = 0;
+        while (i < s.length()) {
+            char c = s.charAt(i);
+            if (Character.isDigit(c) || c == '-') {
+                int num = 0;
+                boolean isNegative = (c == '-');
+                if (isNegative) i++;
+                while (i < s.length() && Character.isDigit(s.charAt(i))) {
+                    num = num * 10 + (s.charAt(i) - '0');
+                    i++;
+                }
+                TreeNode node = new TreeNode(isNegative ? -num : num);
+                stack.push(node);
+            } else if (c == '(') {
+                i++;
+            } else if (c == ')') {
+                TreeNode child = stack.pop();
+                if (!stack.isEmpty()) {
+                    TreeNode parent = stack.peek();
+                    if (parent.left == null) {
+                        parent.left = child;
+                    } else {
+                        parent.right = child;
+                    }
+                }
+                i++;
+            } else {
+                i++;
+            }
+        }
+        return stack.isEmpty() ? null : stack.peek();
     }
 }
 

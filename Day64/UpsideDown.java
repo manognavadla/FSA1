@@ -44,3 +44,89 @@ Sample Output-2:
 ----------------
 2 5 4
  */
+import java.util.*;
+
+class TreeNode {
+    Integer val;
+    TreeNode left, right;
+    
+    TreeNode(Integer val) {
+        this.val = val;
+        this.left = this.right = null;
+    }
+}
+public class UpsideDown {
+    
+    public static TreeNode buildTree(List<Integer> data) {
+        if (data.isEmpty() || data.get(0) == -1) return null;
+        
+        Queue<TreeNode> queue = new LinkedList<>();
+        TreeNode root = new TreeNode(data.get(0));
+        queue.offer(root);
+        
+        int i = 1;
+        while (i < data.size()) {
+            TreeNode current = queue.poll();
+            
+            if (i < data.size() && data.get(i) != -1) {
+                current.left = new TreeNode(data.get(i));
+                queue.offer(current.left);
+            }
+            i++;
+            
+            if (i < data.size() && data.get(i) != -1) {
+                current.right = new TreeNode(data.get(i));
+                queue.offer(current.right);
+            }
+            i++;
+        }
+        
+        return root;
+    }
+    //Write your code here 
+    public static TreeNode upsideDownBinaryTree(TreeNode root) {
+        if (root == null || (root.left == null && root.right == null)) {
+            return root;
+        }
+        
+        TreeNode newRoot = upsideDownBinaryTree(root.left);
+        
+        if (root.left != null) {
+            root.left.left = root.right;
+            root.left.right = root;
+        }
+        
+        root.left = null;
+        root.right = null;
+        
+        return newRoot;
+    }
+    static List<Integer> levelOrderTraversal(TreeNode root){
+        Queue <TreeNode> queue = new LinkedList<>();
+        List<Integer> result = new ArrayList<>();
+        if(root == null) return result;
+        queue.offer(root);
+        while(!queue.isEmpty()){
+            TreeNode current = queue.poll();
+            result.add(current.val);
+            if(current.left != null) queue.offer(current.left);
+            if(current.right != null) queue.offer(current.right);
+        }
+        return result;
+    }
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        String[] input = scanner.nextLine().split(" ");
+        List<Integer> data = new ArrayList<>();
+        for(String s:input) {
+            data.add(Integer.parseInt(s));
+        }
+        scanner.close();
+        
+        TreeNode root = buildTree(data);
+        List<Integer> al=levelOrderTraversal(upsideDownBinaryTree(root));
+        for(int x: al)
+        System.out.print(x+" ");
+    }
+}
